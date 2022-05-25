@@ -45,10 +45,10 @@ describe('Creating a inventory list item - happy path', () => {
     const server = setupServer(
       rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
         const listId = parseInt(req.params.listId)
-        const description = req.body.inventory_list_item.description
-        const quantity = req.body.inventory_list_item.quantity
-        const unit_weight = req.body.inventory_list_item.unit_weight
-        const notes = req.body.inventory_list_item.notes
+        const description = req.body.inventory_item.description
+        const quantity = req.body.inventory_item.quantity
+        const unit_weight = req.body.inventory_item.unit_weight
+        const notes = req.body.inventory_item.notes
 
         const json = [
           {
@@ -151,10 +151,10 @@ describe('Creating a inventory list item - happy path', () => {
     const server = setupServer(
       rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[2].id}/inventory_items`, (req, res, ctx) => {
         const listId = allInventoryLists[2].id
-        const description = req.body.inventory_list_item.description
-        const quantity = req.body.inventory_list_item.quantity
-        const unit_weight = Number(req.body.inventory_list_item.unit_weight)
-        const notes = req.body.inventory_list_item.notes
+        const description = req.body.inventory_item.description
+        const quantity = req.body.inventory_item.quantity
+        const unit_weight = Number(req.body.inventory_item.unit_weight)
+        const notes = req.body.inventory_item.notes
 
         const allItemsListItem = allInventoryLists[0].list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
 
@@ -254,9 +254,9 @@ describe('Creating a inventory list item - happy path', () => {
     const server = setupServer(
       rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[1].id}/inventory_items`, (req, res, ctx) => {
         const listId = allInventoryLists[1].id
-        const description = req.body.inventory_list_item.description
-        const quantity = req.body.inventory_list_item.quantity
-        const notes = req.body.inventory_list_item.notes
+        const description = req.body.inventory_item.description
+        const quantity = req.body.inventory_item.quantity
+        const notes = req.body.inventory_item.notes
 
         const regularListItem = allInventoryLists[1].list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
         const allItemsListItem = allInventoryLists[0].list_items.find(item => item.description.toLowerCase() === description.toLowerCase())

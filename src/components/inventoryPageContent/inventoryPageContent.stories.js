@@ -90,8 +90,8 @@ HappyPath.parameters = {
         // If there is a matching item on the aggregate list, that item will be updated as
         // described above. If there is no matching item, a new one will be created with
         // the `notes` and `description` values from the request.
-        const description = req.body.inventory_list_item.description
-        const quantity = req.body.inventory_list_item.quantity || '1'
+        const description = req.body.inventory_item.description
+        const quantity = req.body.inventory_item.quantity || '1'
 
         // Description and quantity are both required and neither can be blank. The
         // quantity must be an integer as well. If the quantity is a decimal/float value
@@ -99,7 +99,7 @@ HappyPath.parameters = {
         // quantity is non-numeric or less than 1, it is invalid.
         if (description && quantity && (typeof quantity === 'number' || quantity.match(/[1-9]+(\.\d+)?/))) {
           const regListItem = regList.list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
-          const notes = req.body.inventory_list_item.notes
+          const notes = req.body.inventory_item.notes
 
           const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
           const aggregateListItem = aggregateList.list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
@@ -156,7 +156,7 @@ HappyPath.parameters = {
         // edit form will not appear if you click the update link.
         const existingItem = regList.list_items.find(item => item.id === itemId)
         const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
-        const newItem = { ...existingItem, ...req.body.inventory_list_item }
+        const newItem = { ...existingItem, ...req.body.inventory_item }
         const quantity = parseInt(newItem.quantity)
 
         if (newItem.unit_weight === null || newItem.unit_weight === undefined || newItem.unit_weight === '') {

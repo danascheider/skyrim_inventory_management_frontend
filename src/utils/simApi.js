@@ -355,7 +355,7 @@ export const destroyInventoryList = (token, listId) => {
 // POST /inventory_lists/:list_id/inventory_items
 export const createInventoryListItem = (token, listId, attrs) => {
   const uri = `${backendBaseUri}/inventory_lists/${listId}/inventory_items`
-  const body = JSON.stringify({ inventory_list_item: attrs })
+  const body = JSON.stringify({ inventory_item: attrs })
 
   return(
     fetch(uri, { method: 'POST', headers: combinedHeaders(token), body })
@@ -371,7 +371,7 @@ export const createInventoryListItem = (token, listId, attrs) => {
 // PATCH /inventory_items/:id
 export const updateInventoryListItem = (token, itemId, attrs) => {
   const uri = `${backendBaseUri}/inventory_items/${itemId}`
-  const body = JSON.stringify({ inventory_list_item: attrs })
+  const body = JSON.stringify({ inventory_item: attrs })
 
   return(
     fetch(uri, { method: 'PATCH', headers: combinedHeaders(token), body })

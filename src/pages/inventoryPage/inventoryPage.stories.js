@@ -224,13 +224,13 @@ HappyPath.parameters = {
         // If there is a matching item on the aggregate list, that item will be updated as
         // described above. If there is no matching item, a new one will be created with
         // the `notes` and `description` values from the request.
-        const description = req.body.inventory_list_item.description
-        const quantity = req.body.inventory_list_item.quantity || '1'
+        const description = req.body.inventory_item.description
+        const quantity = req.body.inventory_item.quantity || '1'
 
         // We're not going to do syncing of unit weights in this story. It's
         // just too complicated. If a unit weight is set in Storybook, it'll only
         // be set for the new item and the aggregate list item.
-        let unit_weight = req.body.inventory_list_item.unit_weight
+        let unit_weight = req.body.inventory_item.unit_weight
         if (unit_weight === null || unit_weight === undefined || unit_weight === '') {
           unit_weight = null
         } else {
@@ -243,7 +243,7 @@ HappyPath.parameters = {
         // quantity is non-numeric or less than 1, it is invalid.
         if (description && quantity && (typeof quantity === 'number' || quantity.match(/[1-9]+(\.\d+)?/))) {
           const regListItem = regList.list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
-          const notes = req.body.inventory_list_item.notes
+          const notes = req.body.inventory_item.notes
 
           const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
           const aggregateListItem = aggregateList.list_items.find(item => item.description.toLowerCase() === description.toLowerCase())
@@ -295,7 +295,7 @@ HappyPath.parameters = {
         // will need to be updated as well.
         const existingItem = regList.list_items.find(item => item.id === itemId)
         const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
-        const newItem = { ...existingItem, ...req.body.inventory_list_item }
+        const newItem = { ...existingItem, ...req.body.inventory_item }
 
         if (parseInt(newItem.quantity) > 0) {
           const deltaQuantity = newItem.quantity - existingItem.quantity
@@ -303,7 +303,7 @@ HappyPath.parameters = {
             item.description.toLowerCase() === existingItem.description.toLowerCase()
           ))
 
-          const unitWeight = req.body.inventory_list_item.unit_weight
+          const unitWeight = req.body.inventory_item.unit_weight
 
           adjustListItem(aggregateListItem, deltaQuantity, existingItem.notes, newItem.notes, unitWeight)
 
