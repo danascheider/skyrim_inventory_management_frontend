@@ -23,14 +23,14 @@ import InventoryPage from './inventoryPage'
 
 export default { title: 'InventoryPage' }
 
-/* 
- * 
+/*
+ *
  * When the user is logged in, has inventory lists, and the inventory
  * lists are able to be created or updated without incident. Also tests that,
  * when a user assigns a blank title and the API response returns a default
  * one, the title first stays blank then updates to the default one when the
  * response comes back.
- * 
+ *
  */
 
 export const HappyPath = () => (
@@ -205,7 +205,7 @@ HappyPath.parameters = {
     // list exists and belongs to the authenticated user. For the purposes of Storybook, we
     // assume the user is authenticated and the `allInventoryLists` array represents all their
     // inventory lists for all their games.
-    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
       // Find the inventory list the user wants to add the item to
       const listId = parseInt(req.params.listId)
       const regList = allInventoryLists.find(list => list.id === listId)
@@ -284,14 +284,14 @@ HappyPath.parameters = {
     // item exists and belongs to the authenticated user. For the purposes of
     // Storybook, we assume the user is authenticated and the `allInventoryLists`
     // array represents all their inventory lists for all their games.
-    rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       // Find the list the item is on
       const itemId = parseInt(req.params.id)
       const regList = findListByListItem(allInventoryLists, itemId)
 
       if (regList) {
         // If the required `description` field isn't blank, find the item and the
-        // aggregate list the item is on. The corresponding item on that list 
+        // aggregate list the item is on. The corresponding item on that list
         // will need to be updated as well.
         const existingItem = regList.list_items.find(item => item.id === itemId)
         const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
@@ -330,7 +330,7 @@ HappyPath.parameters = {
     // belongs to the authenticated user. For the purposes of Storybook, we're
     // assuming that the user is authenticated and the `allInventoryLists` array
     // represents all their inventory lists for all their games.
-    rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       // Find the item and the list it is on.
       const itemId = parseInt(req.params.id)
       const regList = findListByListItem(allInventoryLists, itemId)
@@ -498,17 +498,17 @@ GameNotFoundOnCreate.parameters = {
         ctx.status(404)
       )
     }),
-    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
     }),
-    rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
     }),
-    rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
@@ -609,7 +609,7 @@ ListOrItemNotFound.parameters = {
     // on a list after deleting the list on another device or browser. The API would return
     // a 404 and the UI should display a message telling the user the list could not be found
     // and advising them to refresh their browser.
-    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
@@ -618,7 +618,7 @@ ListOrItemNotFound.parameters = {
     // after deleting the list item on another device or browser. The API would return a
     // 404 and the UI should display a message telling the user the item could not be found
     // and advising them to refresh their browser.
-    rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
@@ -627,7 +627,7 @@ ListOrItemNotFound.parameters = {
     // after deleting the list item on another device or browser. The API would return a
     // 404 and the UI should display a message telling the user the list could not be found
     // and advising them to refresh their browser.
-    rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       return res(
         ctx.status(404)
       )
@@ -638,7 +638,7 @@ ListOrItemNotFound.parameters = {
 /*
  *
  * When the game has no inventory lists
- * 
+ *
  */
 
 export const NoLists = () => (

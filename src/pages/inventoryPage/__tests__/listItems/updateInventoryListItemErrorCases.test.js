@@ -43,7 +43,7 @@ describe('Updating an inventory list item - error cases', () => {
 
   describe('when the server returns a 401 error', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(401),
           ctx.json({
@@ -95,7 +95,7 @@ describe('Updating an inventory list item - error cases', () => {
 
   describe('when the server returns a 404 error', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(404)
         )
@@ -137,7 +137,7 @@ describe('Updating an inventory list item - error cases', () => {
       // Submit the form
       fireEvent.submit(form)
 
-      // The form should be hidden 
+      // The form should be hidden
       await waitFor(() => expect(form).not.toBeInTheDocument())
 
       // Now we need to find the item on the regular list and the
@@ -168,7 +168,7 @@ describe('Updating an inventory list item - error cases', () => {
 
   describe('when the server returns a 422 error', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(422),
           ctx.json({
@@ -216,7 +216,7 @@ describe('Updating an inventory list item - error cases', () => {
       // Submit the form
       fireEvent.submit(form)
 
-      // The form should not be hidden 
+      // The form should not be hidden
       await waitFor(() => expect(form).toBeInTheDocument())
 
       // Now we need to find the item on the regular list and the
@@ -243,7 +243,7 @@ describe('Updating an inventory list item - error cases', () => {
 
   describe('when the server returns a 500 error', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(500),
           ctx.json({
@@ -286,7 +286,7 @@ describe('Updating an inventory list item - error cases', () => {
       // Submit the form
       fireEvent.submit(form)
 
-      // The form should be hidden 
+      // The form should be hidden
       await waitFor(() => expect(form).not.toBeInTheDocument())
 
       // Now we need to find the item on the regular list and the

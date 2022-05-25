@@ -39,7 +39,7 @@ describe('Incrementing an inventory list item - happy path', () => {
   }
 
   const server = setupServer(
-    rest.patch(`${backendBaseUri}/inventory_list_items/3`, (req, res, ctx) => {
+    rest.patch(`${backendBaseUri}/inventory_items/3`, (req, res, ctx) => {
       const listItem = allInventoryLists[1].list_items[1]
       const aggListItem = allInventoryLists[0].list_items.find(item => item.description.toLowerCase() === listItem.description.toLowerCase())
       const quantity = req.body.inventory_list_item.quantity

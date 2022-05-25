@@ -53,7 +53,7 @@ HappyPath.parameters = {
       const listId = parseInt(req.params.id)
       const regularList = allInventoryLists.find(list => list.id === listId)
       const items = regularList.list_items
-      
+
       const newAggregateList = removeOrAdjustItemsOnListDestroy(allInventoryLists[0], items)
 
       if (newAggregateList === null) {
@@ -71,7 +71,7 @@ HappyPath.parameters = {
     // list exists and belongs to the authenticated user. For the purposes of Storybook, we
     // assume the user is authenticated and the `allInventoryLists` array represents all their
     // inventory lists for all their games.
-    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
       // Find the inventory list the user wants to add the item to
       const listId = parseInt(req.params.listId)
       const regList = allInventoryLists.find(list => list.id === listId)
@@ -143,7 +143,7 @@ HappyPath.parameters = {
     // item exists and belongs to the authenticated user. For the purposes of
     // Storybook, we assume the user is authenticated and the `allInventoryLists`
     // array represents all their lists for all their games.
-    rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       // Find the list the item is on
       const itemId = parseInt(req.params.id)
       const regList = findListByListItem(allInventoryLists, itemId)
@@ -158,7 +158,7 @@ HappyPath.parameters = {
         const aggregateList = findAggregateList(allInventoryLists, regList.game_id)
         const newItem = { ...existingItem, ...req.body.inventory_list_item }
         const quantity = parseInt(newItem.quantity)
-        
+
         if (newItem.unit_weight === null || newItem.unit_weight === undefined || newItem.unit_weight === '') {
           newItem.unit_weight = null
         } else {
@@ -196,7 +196,7 @@ HappyPath.parameters = {
     // belongs to the authenticated user. For the purposes of Storybook, we're
     // assuming that the user is authenticated and the `allInventoryLists` array
     // represents all their inventory lists for all their games.
-    rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+    rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
       // Find the item and the list it is on.
       const itemId = parseInt(req.params.id)
       const regList = findListByListItem(allInventoryLists, itemId)

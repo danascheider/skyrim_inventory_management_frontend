@@ -42,7 +42,7 @@ describe('Decrementing an inventory list item - happy path', () => {
 
   describe('when the new quantity would be greater than zero', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/3`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/3`, (req, res, ctx) => {
         const listItem = allInventoryLists[1].list_items[1]
         const aggListItem = allInventoryLists[0].list_items.find(item => item.description.toLowerCase() === listItem.description.toLowerCase())
         const quantity = req.body.inventory_list_item.quantity
@@ -112,7 +112,7 @@ describe('Decrementing an inventory list item - happy path', () => {
       await waitFor(() => expect(within(aggListItemEl).queryByText('3')).toBeVisible())
     })
   })
-  
+
   describe('when the new quantity would be zero', () => {
     let confirm
 
@@ -154,7 +154,7 @@ describe('Decrementing an inventory list item - happy path', () => {
     describe('when the user deletes the item when prompted', () => {
       describe('when the item on the aggregate list is not destroyed', () => {
         const server = setupServer(
-          rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+          rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
             const itemId = parseInt(req.params.id)
             const regList = allInventoryLists.find(list => !!list.list_items.find(li => li.id === itemId))
             const regListItem = regList.list_items.find(li => li.id === itemId)
@@ -171,7 +171,7 @@ describe('Decrementing an inventory list item - happy path', () => {
             )
           })
         )
-        
+
         beforeAll(() => server.listen())
 
         beforeEach(() => {
@@ -211,7 +211,7 @@ describe('Decrementing an inventory list item - happy path', () => {
           // Find the aggregate list
           const aggListTitleEl = await screen.findByText('All Items')
           const aggListEl = aggListTitleEl.closest('.root')
-          
+
           // Expand the aggregate list
           fireEvent.click(aggListTitleEl)
 
@@ -226,7 +226,7 @@ describe('Decrementing an inventory list item - happy path', () => {
 
       describe('when the item on the aggregate list is destroyed', () => {
         const server = setupServer(
-          rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+          rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
             return res(
               ctx.status(204)
             )
@@ -273,7 +273,7 @@ describe('Decrementing an inventory list item - happy path', () => {
           // Find the aggregate list
           const aggListTitleEl = await screen.findByText('All Items')
           const aggListEl = aggListTitleEl.closest('.root')
-          
+
           // Expand the aggregate list
           fireEvent.click(aggListTitleEl)
 

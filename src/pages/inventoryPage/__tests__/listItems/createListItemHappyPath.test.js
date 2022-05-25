@@ -43,7 +43,7 @@ describe('Creating a inventory list item - happy path', () => {
 
   describe('when there is no matching item on any inventory list', () => {
     const server = setupServer(
-      rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+      rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
         const listId = parseInt(req.params.listId)
         const description = req.body.inventory_list_item.description
         const quantity = req.body.inventory_list_item.quantity
@@ -149,7 +149,7 @@ describe('Creating a inventory list item - happy path', () => {
 
   describe('when there is a matching item on another list', () => {
     const server = setupServer(
-      rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[2].id}/inventory_list_items`, (req, res, ctx) => {
+      rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[2].id}/inventory_items`, (req, res, ctx) => {
         const listId = allInventoryLists[2].id
         const description = req.body.inventory_list_item.description
         const quantity = req.body.inventory_list_item.quantity
@@ -241,7 +241,7 @@ describe('Creating a inventory list item - happy path', () => {
       const itemEl = item.closest('.root')
 
       expect(item).toBeVisible()
-      
+
       fireEvent.click(item)
 
       await waitFor(() => expect(within(itemEl).queryByText('9')).toBeVisible())
@@ -252,7 +252,7 @@ describe('Creating a inventory list item - happy path', () => {
 
   describe('when there is a matching item on the same list', () => {
     const server = setupServer(
-      rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[1].id}/inventory_list_items`, (req, res, ctx) => {
+      rest.post(`${backendBaseUri}/inventory_lists/${allInventoryLists[1].id}/inventory_items`, (req, res, ctx) => {
         const listId = allInventoryLists[1].id
         const description = req.body.inventory_list_item.description
         const quantity = req.body.inventory_list_item.quantity

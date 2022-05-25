@@ -43,7 +43,7 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
 
   describe('when the server returns a 401', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/3`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/3`, (req, res, ctx) => {
         return res(
           ctx.status(401),
           ctx.json({
@@ -51,7 +51,7 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
           })
         )
       }),
-      rest.delete(`${backendBaseUri}/inventory_list_items/6`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/6`, (req, res, ctx) => {
         return res(
           ctx.status(401),
           ctx.json({
@@ -142,12 +142,12 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
 
   describe('when the server returns a 404', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(404)
         )
       }),
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(404)
         )
@@ -244,7 +244,7 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
 
     describe('decrementing to zero', () => {
       let confirm
-      
+
       beforeEach(() => {
         confirm = jest.spyOn(window, 'confirm').mockImplementation(() => true)
       })
@@ -289,7 +289,7 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
 
   describe('when the server returns a 500 or other error', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(500),
           ctx.json({
@@ -297,7 +297,7 @@ describe('Incrementing or decrementing an inventory list item - error cases', ()
           })
         )
       }),
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(500),
           ctx.json({

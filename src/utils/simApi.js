@@ -6,11 +6,11 @@
  * headers and request body) and (2) throwing an AuthorizationError if the request fails.
  * The AuthorizationError has name 'AuthorizationError', code 401, and either the
  * message passed to the constructor or, by default, '401 Unauthorized'.
- * 
+ *
  * For more information on the SIM API, its endpoints, the requests it expects, or its
  * responses, please visit the backend API docs:
  * https://github.com/danascheider/skyrim_inventory_management/tree/main/docs/api
- * 
+ *
  */
 
 import { backendBaseUri } from './config'
@@ -27,7 +27,7 @@ const combinedHeaders = token => ({ ...authHeader(token), ...contentTypeHeader }
 /*
  *
  * Google OAuth Token Verification Endpoint
- * 
+ *
  */
 
 export const authorize = token => {
@@ -45,7 +45,7 @@ export const authorize = token => {
 /*
  *
  * User Profile Endpoint
- * 
+ *
  */
 
 export const fetchUserProfile = token => {
@@ -63,7 +63,7 @@ export const fetchUserProfile = token => {
 /*
  *
  * Game Endpoints (Scoped to Authenticated User)
- * 
+ *
  */
 
 // GET /games
@@ -277,7 +277,7 @@ export const destroyShoppingListItem = (token, itemId) => {
 /*
  *
  * Inventory List Endpoints (Scoped to Game)
- * 
+ *
  */
 
 // GET /games/:game_id/inventory_lists
@@ -352,9 +352,9 @@ export const destroyInventoryList = (token, listId) => {
  *
  */
 
-// POST /inventory_lists/:list_id/inventory_list_items
+// POST /inventory_lists/:list_id/inventory_items
 export const createInventoryListItem = (token, listId, attrs) => {
-  const uri = `${backendBaseUri}/inventory_lists/${listId}/inventory_list_items`
+  const uri = `${backendBaseUri}/inventory_lists/${listId}/inventory_items`
   const body = JSON.stringify({ inventory_list_item: attrs })
 
   return(
@@ -368,9 +368,9 @@ export const createInventoryListItem = (token, listId, attrs) => {
   )
 }
 
-// PATCH /inventory_list_items/:id
+// PATCH /inventory_items/:id
 export const updateInventoryListItem = (token, itemId, attrs) => {
-  const uri = `${backendBaseUri}/inventory_list_items/${itemId}`
+  const uri = `${backendBaseUri}/inventory_items/${itemId}`
   const body = JSON.stringify({ inventory_list_item: attrs })
 
   return(
@@ -378,15 +378,15 @@ export const updateInventoryListItem = (token, itemId, attrs) => {
       .then(resp => {
         if (resp.status === 401) throw new AuthorizationError()
         if (resp.status === 404) throw new NotFoundError()
-        
+
         return resp.json().then(json => ({ status: resp.status, json }))
       })
   )
 }
 
-// DELETE /inventory_list_items/:id
+// DELETE /inventory_items/:id
 export const destroyInventoryListItem = (token, itemId) => {
-  const uri = `${backendBaseUri}/inventory_list_items/${itemId}`
+  const uri = `${backendBaseUri}/inventory_items/${itemId}`
 
   return(
     fetch(uri, { method: 'DELETE', headers: authHeader(token) })

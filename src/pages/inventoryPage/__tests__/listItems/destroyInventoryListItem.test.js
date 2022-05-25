@@ -95,7 +95,7 @@ describe('Destroying a inventory list item', () => {
 
   describe('when the aggregate list item is also removed', () => {
     const server = setupServer(
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(204)
         )
@@ -156,7 +156,7 @@ describe('Destroying a inventory list item', () => {
 
   describe('when the aggregate list item is not removed', () => {
     const server = setupServer(
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         const itemId = parseInt(req.params.id)
         const list = findListByListItem(allInventoryLists, itemId)
         const item = list.list_items.find(i => i.id === itemId)
@@ -224,7 +224,7 @@ describe('Destroying a inventory list item', () => {
 
   describe('when the server returns a 401 error', () => {
     const server = setupServer(
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(401),
           ctx.json({
@@ -270,7 +270,7 @@ describe('Destroying a inventory list item', () => {
 
   describe('when the server returns a 404 error', () => {
     const server = setupServer(
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(404)
         )
@@ -326,7 +326,7 @@ describe('Destroying a inventory list item', () => {
 
   describe('when the server returns a 500 error', () => {
     const server = setupServer(
-      rest.delete(`${backendBaseUri}/inventory_list_items/:id`, (req, res, ctx) => {
+      rest.delete(`${backendBaseUri}/inventory_items/:id`, (req, res, ctx) => {
         return res(
           ctx.status(500),
           ctx.json({

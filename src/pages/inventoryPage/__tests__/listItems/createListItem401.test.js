@@ -39,7 +39,7 @@ describe('Creating a inventory list item - when the server returns a 401', () =>
   }
 
   const server = setupServer(
-    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_list_items`, (req, res, ctx) => {
+    rest.post(`${backendBaseUri}/inventory_lists/:listId/inventory_items`, (req, res, ctx) => {
       return res(
         ctx.status(401),
         ctx.json({

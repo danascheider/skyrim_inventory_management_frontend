@@ -43,7 +43,7 @@ describe('Updating an inventory list item - happy path', () => {
 
   describe('when not updating unit weight', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/3`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/3`, (req, res, ctx) => {
         const listItem = allInventoryLists[1].list_items[1]
         const aggListItem = allInventoryLists[0].list_items.find(item => item.description.toLowerCase() === listItem.description.toLowerCase())
         const quantity = parseInt(req.body.inventory_list_item.quantity)
@@ -105,7 +105,7 @@ describe('Updating an inventory list item - happy path', () => {
       // Submit the form
       fireEvent.submit(form)
 
-      // The form should be hidden 
+      // The form should be hidden
       await waitFor(() => expect(form).not.toBeInTheDocument())
 
       // Now we need to find the item on the regular list and the
@@ -159,7 +159,7 @@ describe('Updating an inventory list item - happy path', () => {
         // Now press the escape key to hide the modal
         fireEvent.keyDown(form, { key: 'Escape', code: 'Escape' })
 
-        // The form should be hidden 
+        // The form should be hidden
         await waitFor(() => expect(modal).not.toBeVisible())
       })
     })
@@ -190,7 +190,7 @@ describe('Updating an inventory list item - happy path', () => {
         // Now click on the modal element, outside the form, to hide it
         fireEvent.click(modal)
 
-        // The form should be hidden 
+        // The form should be hidden
         await waitFor(() => expect(modal).not.toBeVisible())
       })
     })
@@ -198,7 +198,7 @@ describe('Updating an inventory list item - happy path', () => {
 
   describe('when updating unit weight', () => {
     const server = setupServer(
-      rest.patch(`${backendBaseUri}/inventory_list_items/1`, (req, res, ctx) => {
+      rest.patch(`${backendBaseUri}/inventory_items/1`, (req, res, ctx) => {
         const lists = allInventoryLists.filter(list => list.game_id === games[0].id)
 
         let response = []
@@ -250,7 +250,7 @@ describe('Updating an inventory list item - happy path', () => {
       // Submit the form
       fireEvent.submit(form)
 
-      // The form should be hidden 
+      // The form should be hidden
       await waitFor(() => expect(form).not.toBeInTheDocument())
 
       // Now we need to find the item on all the lists where it appears.
