@@ -2,17 +2,17 @@
  *
  * For more information about contexts and how they are used in SIM,
  * visit the docs on SIM contexts (/docs/contexts.md)
- * 
+ *
  * This context makes heavy use of the SIM API. The requests it makes are
  * mediated through the simApi module (/src/utils/simApi.js). To get information
  * about the API, its requirements, and its responses, visit the docs:
  * https://github.com/danascheider/skyrim_inventory_management/tree/main/docs/api
- * 
+ *
  */
 
 import { createContext, useEffect, useState, useRef, useCallback } from 'react'
 import { useCookies } from 'react-cookie'
-import { Redirect, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { sessionCookieName } from '../utils/config'
 import { fetchUserProfile } from '../utils/simApi'
@@ -132,7 +132,7 @@ const AppProvider = ({ children, overrideValue = {} }) => {
 
   return(
     <AppContext.Provider value={value}>
-      {redirectPath ? <Redirect to={redirectPath} /> : children}
+      {redirectPath ? <Navigate to={redirectPath} /> : children}
     </AppContext.Provider>
   )
 }

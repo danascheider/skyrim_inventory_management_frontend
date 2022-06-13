@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { AppProvider } from '../contexts/appContext'
 import { GamesProvider } from '../contexts/gamesContext'
@@ -61,7 +61,7 @@ const pages = [
 ]
 
 const PageRoutes = () => (
-  <Switch>
+  <Routes>
     {pages.map(
       ({ pageId, title, description, jsx, path }) => {
         return(
@@ -90,7 +90,7 @@ const PageRoutes = () => (
         <NotFoundPage />
       </AppProvider>
     </Route>
-  </Switch>
+  </Routes>
 )
 
 export default PageRoutes

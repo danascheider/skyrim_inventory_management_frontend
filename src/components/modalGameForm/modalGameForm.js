@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { pathsScopedToGames } from '../../routing/paths'
 import { useAppContext, useGamesContext } from '../../hooks/contexts'
 import ModalForm from '../modalForm/modalForm'
@@ -30,7 +30,7 @@ const ModalGameForm = ({ type, currentAttributes = {} }) => {
   const { setFlashVisible, setModalVisible } = useAppContext()
   const { performGameCreate, performGameUpdate } = useGamesContext()
 
-  const history = useHistory()
+  const history = useNavigate()
 
   const mountedRef = useRef(true)
 
@@ -87,7 +87,7 @@ const ModalGameForm = ({ type, currentAttributes = {} }) => {
   const fields = formFields.map(field => (
     currentAttributes[field.name] ? { defaultValue: currentAttributes[field.name], ...field } : field
   ))
-  
+
   useEffect(() => (
     () => mountedRef.current = false
   ), [])
@@ -99,7 +99,7 @@ const ModalGameForm = ({ type, currentAttributes = {} }) => {
       onSubmit={onSubmit}
       fields={fields}
     />
-  )  
+  )
 }
 
 ModalGameForm.propTypes = {

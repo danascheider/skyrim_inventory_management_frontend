@@ -9,7 +9,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { BLUE } from '../../utils/colorSchemes'
@@ -19,7 +19,7 @@ import GamesDropdownOption from '../gamesDropdownOption/gamesDropdownOption'
 import styles from './gamesDropdown.module.css'
 
 const GamesDropdown = () => {
-  const history = useHistory()
+  const history = useNavigate()
   const queryString = useQuery()
 
   const { setFlashVisible } = useAppContext()
@@ -45,7 +45,7 @@ const GamesDropdown = () => {
   const selectGame = useCallback(game => {
     setActiveGame(game)
     setInputValue(game.name)
-    
+
     const params = new URLSearchParams(`game_id=${game.id}`)
     history.push({ search: params.toString() })
 
