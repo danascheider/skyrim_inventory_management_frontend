@@ -1,4 +1,3 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { AppProvider } from '../contexts/appContext'
@@ -65,31 +64,35 @@ const PageRoutes = () => (
     {pages.map(
       ({ pageId, title, description, jsx, path }) => {
         return(
-          <Route exact path={path} key={pageId}>
-            <Helmet>
-              <html lang='en' />
-
-              <title>{title}</title>
-              <meta name='description' content={description} />
-            </Helmet>
-            <AppProvider>
-              {jsx}
-            </AppProvider>
-          </Route>
+          <Route
+            exact
+            path={path}
+            key={pageId}
+            element={<>
+              <Helmet>
+                <html lang='en' />
+                <title>{title}</title>
+                <meta name='description' content={description} />
+              </Helmet>
+              <AppProvider>{jsx}</AppProvider>
+            </>}
+          />
         )
       }
     )}
-    <Route key='notFound'>
-      <Helmet>
-        <html lang='en' />
-
-        <title>Skyrim Inventory Management | Page Not Found</title>
-        <meta name='description' content='Skyrim Inventory Management could not find the page you were looking for' />
-      </Helmet>
-      <AppProvider>
-        <NotFoundPage />
-      </AppProvider>
-    </Route>
+    <Route
+      key='notFound'
+      element={
+        <>
+          <Helmet>
+            <html lang='en' />
+            <title>Skyrim Inventory Management | Page Not Found</title>
+            <meta name='description' content='Skyrim Inventory Management could not find the page you were looking for' />
+          </Helmet>
+          <AppProvider><NotFoundPage /></AppProvider>
+        </>
+      }
+    />
   </Routes>
 )
 
