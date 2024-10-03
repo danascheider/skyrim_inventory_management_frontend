@@ -5781,13 +5781,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.3.4":
-  version: 18.3.4
-  resolution: "@types/react@npm:18.3.4"
+"@types/react@npm:^18.3.11":
+  version: 18.3.11
+  resolution: "@types/react@npm:18.3.11"
   dependencies:
     "@types/prop-types": "*"
     csstype: ^3.0.2
-  checksum: 555ccd1af86a23c781dea0360de64b2f7a0708cdcbf9e6496744b77630065868526fd55147c727dc5ef11b7fd712b04f7898757a84c67e2eb9dfd4c4ead10d95
+  checksum: 6cbf36673b64e758dd61b16c24139d015f58530e0d476777de26ba83f24b55e142fbf64e3b8f6b3c7b05ed9ba548551b2a62d9ffb0f95743d0a368646a619163
   languageName: node
   linkType: hard
 
@@ -12746,7 +12746,7 @@ __metadata:
     "@testing-library/react": ^16.0.0
     "@types/jsdom": ^21.1.7
     "@types/node": ^22.5.1
-    "@types/react": ^18.3.4
+    "@types/react": ^18.3.11
     "@types/react-dom": ^18.3.0
     "@types/react-router-dom": ^5.3.3
     "@typescript-eslint/parser": ^8.3.0
