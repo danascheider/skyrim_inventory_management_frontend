@@ -4530,7 +4530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:^11.4.0":
+"chromatic@npm:^11.12.6, chromatic@npm:^11.4.0":
   version: 11.12.6
   resolution: "chromatic@npm:11.12.6"
   peerDependencies:
@@ -9168,6 +9168,7 @@ __metadata:
     "@typescript-eslint/parser": ^8.3.0
     "@vitejs/plugin-react": ^4.3.1
     babel-loader: ^9.2.1
+    chromatic: ^11.12.6
     classnames: ^2.5.1
     eslint: ^8.57.0
     firebase: ^10.14.1

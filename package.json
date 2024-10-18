@@ -17,7 +17,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider storybook dev -p 6006",
-    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider storybook build"
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider storybook build",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -56,6 +57,7 @@
     "@typescript-eslint/parser": "^8.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "babel-loader": "^9.2.1",
+    "chromatic": "^11.12.6",
     "eslint": "^8.57.0",
     "jsdom": "^25.0.0",
     "msw": "^2.4.11",
