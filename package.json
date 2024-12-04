@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^8.13.0",
     "@vitejs/plugin-react": "^4.3.3",
     "babel-loader": "^9.2.1",
-    "chromatic": "^11.18.1",
+    "chromatic": "^11.20.0",
     "eslint": "^8.57.0",
     "jsdom": "^25.0.0",
     "msw": "^2.6.6",
