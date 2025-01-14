@@ -2580,12 +2580,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.6.0":
-  version: 6.6.0
-  resolution: "@fortawesome/free-solid-svg-icons@npm:6.6.0"
+"@fortawesome/free-solid-svg-icons@npm:^6.7.2":
+  version: 6.7.2
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.7.2"
   dependencies:
-    "@fortawesome/fontawesome-common-types": 6.6.0
-  checksum: 145ae70fe0df253ed5e3330f88fde7236518700311d55019584f1633da67eef65e83838b948e5f4709d70beac3ba3c6b0b5ed58932127e69651b15e8d2e7ee7f
+    "@fortawesome/fontawesome-common-types": 6.7.2
+  checksum: 457cc180399be57efd1a5908aaa76c8530dec5469fa676904179f73976c10bb030c6de9bf866e2a83e042cfd23856ba5fa1ca5acdb83f4e90c6b4aa9e5412d3c
   languageName: node
   linkType: hard
 
@@ -9407,7 +9407,7 @@ __metadata:
     "@chromatic-com/storybook": ^3.2.2
     "@fortawesome/fontawesome-svg-core": ^6.6.0
     "@fortawesome/free-regular-svg-icons": ^6.7.2
-    "@fortawesome/free-solid-svg-icons": ^6.6.0
+    "@fortawesome/free-solid-svg-icons": ^6.7.2
     "@fortawesome/react-fontawesome": ^0.2.2
     "@react-hook/resize-observer": ^1.2.6
     "@storybook/addon-actions": ^8.4.6
